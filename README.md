@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/raedar-inc/raedar_web/branch/develop/graph/badge.svg)](https://codecov.io/gh/raedar-inc/raedar_web)
+
 # raedar_web
 
 # Project Setup
