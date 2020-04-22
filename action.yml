@@ -1,0 +1,22 @@
+name: 'Codecov-1'
+description: 'GitHub Action that uploads coverage reports for your repository to codecov.io'
+author: 'usamaidrsk'
+inputs:
+  name:
+    description: 'coverage upload'
+    required: true
+  token:
+    description: 'a9182f60-bde1-4016-9a66-72e745774dd7'
+    required: true
+  file:
+    description: './coverage/clover.xml'
+    required: true
+  flags:
+    description: 'unittests'
+    required: true
+  fail_ci_if_error:
+    description: 'Codecov ran into an error during upload'
+    required: true
+branding:
+  color: 'red'
+  icon: 'umbrella'
