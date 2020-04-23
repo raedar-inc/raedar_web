@@ -6,7 +6,7 @@ name: raedar CI/CD jobs
 
 on:
   push:
-    branches: 
+    branches:
       - develop
   pull_request:
     branches:
@@ -20,25 +20,40 @@ jobs:
         node-version: [10.x, 12.x,13.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-            
-    - run: yarn
-    - run: yarn run build
-    - run: yarn  test:unit --coverage
-     
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1
-      with: 
-       # token: ${{a9182f60-bde1-4016-9a66-72e745774dd7}} # not required for public repos
-        file: ./coverage/clover.xml  #optional
-        flags: unittests # optional
-        name: codecov-1 # optional
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - run: bash <(curl -s https://codecov.io/bash) -t  a9182f60-bde1-4016-9a66-72e745774dd7 
+      - run: yarn
+      - run: yarn run build
+      - run: yarn  test:unit --coverage
 
-      env:
-        CI: true
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          # token: ${{a9182f60-bde1-4016-9a66-72e745774dd7}} # not required for public repos
+          file: ./coverage/clover.xml  #optional
+          flags: unittests # optional
+          name: codecov-1 # optional
+
+      - run: bash <(curl -s https://codecov.io/bash) -t  a9182f60-bde1-4016-9a66-72e745774dd7
+
+        env:
+          CI: true
+  audit:
+    name: audit-dependencies
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x,13.x]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: yarn audit
+        env:
+          CI: true
