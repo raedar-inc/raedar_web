@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <NavBar name="RAEDER"/>
+    <NavBar name="RAEDER" />
     <FooterBar />
   </v-app>
 </template>
@@ -9,16 +9,13 @@
 // import HelloWorld from "./components/HelloWorld";
 import NavBar from "./components/NavBar";
 import FooterBar from "./components/FooterBar";
-
 export default {
   name: "App",
-
   components: {
     // HelloWorld,
     NavBar,
     FooterBar
   },
-
   data: () => ({
     //.
   })

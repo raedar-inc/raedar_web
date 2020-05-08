@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-navigation-drawer class="breakpoint: '' " right v-model="drawer" app>
+    <v-navigation-drawer right v-model="drawer" app temporary>
       <v-list>
         <v-list-item v-for="link of links" v-bind:key="link" link>
           <v-list-item-content>
@@ -13,24 +13,28 @@
       <!--    <div class="" >-->
       <v-img
         alt="Raeder Logo"
-        class="shrink mr-2 "
+        class="shrink mr-2 ml-5"
         contain
         src="../assets/logo.png"
         transition="scale-transition"
         width="50"
         id="imgstyle"
       />
-      <!--    </div>-->
       <v-text contain min-width="100" width="500">
-       {{name}}
+        {{ name }}
       </v-text>
-
       <v-spacer />
-      <v-btn href="" v-for="link of links" v-bind:key="link" text>
-        {{ link }}
-      </v-btn>
+      <!-- Conditionally rendering the bbavbar links icon on large screens -->
+      <div v-if="!this.$vuetify.breakpoint.smAndDown">
+        <v-btn href="" v-for="link of links" v-bind:key="link" text>
+          {{ link }}
+        </v-btn>
+      </div>
       <v-spacer />
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <!-- Conditionally rendering the navbar icon on small screens -->
+      <div v-if="this.$vuetify.breakpoint.smAndDown">
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      </div>
     </v-app-bar>
   </div>
 </template>
