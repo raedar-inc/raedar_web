@@ -1,12 +1,8 @@
-import { shallowMount } from "@vue/test-utils";
-import NavBar from "@/components/NavBar.vue";
+// import { shallowMount } from "@vue/test-utils";
+import HelloWorld from "@/components/HelloWorld.vue";
 
-describe("NavBar.vue", () => {
+describe("HelloWorld.vue", () => {
   it("renders props.msg when passed", () => {
-    const name = "new message";
-    const wrapper = shallowMount(NavBar, {
-      propsData: { name }
-    });
-    expect(wrapper.text()).toMatch(name);
+    expect(typeof HelloWorld.data).toBe("function");
   });
 });
